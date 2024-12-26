@@ -2,7 +2,7 @@
 import { Coffee } from 'lucide-react';
 import Image from "next/image";
 
-interface MenuItem {
+interface CourseItem {
   name: string;
   price: number;
   description: string;
@@ -10,26 +10,16 @@ interface MenuItem {
   highlight?: boolean;
 }
 
-interface StarterMenuProps {
+interface MainCourseProps {
   title: string;
   imageSrc: string;
-  menuItems: MenuItem[];
+  CourseItems: CourseItem[];
 }
 
-export default function MenuComponent({ title, imageSrc, menuItems }: StarterMenuProps) {
+export default function MainCourseComponent({ title, imageSrc, CourseItems }: MainCourseProps) {
   return (
     <section className="w-full mx-auto py-8 mt-[20px] px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto flex flex-col lg:flex-row gap-12 items-center lg:items-start">
-        {/* Image Section */}
-        <div className="w-full lg:w-[448px] mb-8 lg:mb-0 flex-shrink-0">
-          <Image
-            src={imageSrc}
-            alt={`${title} image`}
-            width={448}
-            height={626}
-            className="w-full h-[450px] max-w-full rounded-lg shadow-lg"
-          />
-        </div>
 
         {/* Menu Content */}
         <div className="w-full lg:w-1/2 lg:pl-8">
@@ -40,7 +30,7 @@ export default function MenuComponent({ title, imageSrc, menuItems }: StarterMen
             </h1>
           </div>
           <div className="space-y-6 ">
-            {menuItems.map((item, index) => (
+            {CourseItems.map((item, index) => (
               <div
                 key={index}
                 className="border-b border-dashed border-gray-300 pb-2"
@@ -66,6 +56,16 @@ export default function MenuComponent({ title, imageSrc, menuItems }: StarterMen
               </div>
             ))}
           </div>
+        </div>
+        {/* Image Section */}
+        <div className="w-full lg:w-[448px] mb-8 lg:mb-0 flex-shrink-0">
+          <Image
+            src={imageSrc}
+            alt={`${title} image`}
+            width={448}
+            height={626}
+            className="w-full h-[450px] max-w-full rounded-lg shadow-lg"
+          />
         </div>
       </div>
     </section>

@@ -1,6 +1,12 @@
+"use client"
 import React from 'react'
 import Hero2 from '../components/PagesHero'
-import StarterMenu from './Startetmenu'
+import StarterMenu from './StarterMenu'
+import MainCourse from './MainCourse'
+import Experiences from '@/components/Experiences'
+import Desserts from './Deserts'
+import Drinks from './Drinks'
+import PartnersAndClients from './Clients'
 
 const menupage = () => {
   return (
@@ -23,6 +29,11 @@ const menupage = () => {
         ]}
       />
       <StarterMenu />
+      <MainCourse />
+      <Experiences />
+      <Desserts />
+      <Drinks />
+      <PartnersAndClients />
     </div>
   )
 }
