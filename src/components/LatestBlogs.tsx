@@ -28,7 +28,7 @@ const blogPosts = [
 
 const LatestBlog = () => {
   return (
-    <section className="bg-black py-2 px-24">
+    <section className="bg-black py-8 px-24">
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <div className="text-center mb-12">

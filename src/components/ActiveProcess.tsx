@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 const ActiveProcess: FC = () => {
   return (
-    <section className="relative w-full h-screen bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/Active-process.png')" }}>
+    <section className="relative w-full h-96 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/Active-process.png')" }}>
       <div className="absolute inset-0 bg-black opacity-50"></div>
       <div className="relative z-10 flex flex-col justify-center items-end h-full px-4 md:px-8 lg:px-16 text-white text-right">
         <h4 className="text-sm md:text-md lg:text-lg italic">Restaurant Active Process</h4>
