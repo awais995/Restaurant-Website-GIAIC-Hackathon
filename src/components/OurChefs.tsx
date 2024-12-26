@@ -6,10 +6,10 @@ import Link from 'next/link';
 const OurChefs = () => {
   // Dynamic data for chefs
   const chefs = [
-    { id: 1, src: '/chef-1.jpeg', alt: 'Chef 1', href: '/chef/1' },
-    { id: 2, src: '/chef-2.jpeg', alt: 'Chef 2', href: '/chef/2' },
-    { id: 3, src: '/chef-3.jpeg', alt: 'Chef 3', href: '/chef/3' },
-    { id: 4, src: '/chef-4.jpeg', alt: 'Chef 4', href: '/chef/4' },
+    { id: 1, src: '/Chef-1.jpeg', alt: 'Chef 1', href: '/chef/1' },
+    { id: 2, src: '/Chef-2.jpeg', alt: 'Chef 2', href: '/chef/2' },
+    { id: 3, src: '/Chef-3.jpeg', alt: 'Chef 3', href: '/chef/3' },
+    { id: 4, src: '/Chef-4.jpeg', alt: 'Chef 4', href: '/chef/4' },
   ];
 
   return (
