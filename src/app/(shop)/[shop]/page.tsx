@@ -1,12 +1,12 @@
-import Hero2 from '@/app/(shop)/components/PagesHero'
 import React from 'react'
+import Hero2 from '../components/PagesHero'
 
-const Chefs = () => {
+const Shop = () => {
   return (
     <div>
       <Hero2
         logoText="Foodtuck"
-        menuTitle="Our Chefs"
+        menuTitle="Shop"
         backgroundImage="/hero-page-bg.png"
         navigationLinks={[
           { label: 'Home', href: '/' },
@@ -18,11 +18,11 @@ const Chefs = () => {
         ]}
         breadcrumbs={[
           { label: 'Home', href: '/' },
-          { label: 'Chefs', href: '/chefs' }
+          { label: 'Shop', href: '/shop' }
         ]}
       />
     </div>
   )
 }
 
-export default Chefs
+export default Shop
