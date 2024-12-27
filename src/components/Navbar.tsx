@@ -62,7 +62,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
           {links.map((item) => (
             <li
               key={item.name}
-              className="hover:text-primary cursor-pointer px-4 md:px-0"
+              className="hover:text-primary cursor-pointer text-[18px] px-4 md:px-0"
               onClick={() => setMenuOpen(false)}
             >
               <Link href={item.path}>{item.name}</Link>
@@ -78,7 +78,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
               placeholder="Search..."
               className="bg-black border border-primary rounded-full px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-orange-500"
             />
-            <CiSearch className="absolute top-2.5 right-3" />
+            <CiSearch className="absolute top-2.5 right-3 w-5 h-5" />
           </div>
           <Link href="/cart">
             <IoBagHandle className="w-6 h-6" />

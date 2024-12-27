@@ -1,6 +1,6 @@
 "use client"
-import { Coffee } from 'lucide-react';
 import Image from "next/image";
+import { PiCoffeeLight } from "react-icons/pi";
 
 interface CourseItem {
   name: string;
@@ -24,7 +24,7 @@ export default function MainCourseComponent({ title, imageSrc, CourseItems }: Ma
         {/* Menu Content */}
         <div className="w-full lg:w-1/2 lg:pl-8">
           <div className="flex items-center mb-8 space-x-2">
-            <Coffee className="text-[#FF9F0D]" size={24} />
+            <PiCoffeeLight className="text-[#FF9F0D]" size={24}/>
             <h1 className="text-[40px] leading-[40px]  text-[#333333] font-bold pb-2">
               {title}
             </h1>

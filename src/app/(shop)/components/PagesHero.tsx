@@ -1,7 +1,9 @@
 "use client"
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Search, ShoppingBag, User } from 'lucide-react';
+import { CiSearch } from 'react-icons/ci';
+import { PiHandbag, PiUser } from 'react-icons/pi';
+
 
 function Hero2({
   logoText = 'Foodtuck',
@@ -65,12 +67,12 @@ function Hero2({
                 placeholder="Search..."
                 className="bg-black border border-[#FF9F0D] rounded-full px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-orange-500"
               />
-              <Search className="absolute top-2.5 right-3 h-5 w-5" />
+              <CiSearch className="absolute top-2.5 right-3 h-5 w-5" />
               <span className="sr-only">Search</span>
             </button>
             {/* Search Icon - Visible on small screens */}
             <button className="block lg:hidden text-white hover:text-orange-500">
-              <Search className="h-5 w-5" />
+              <CiSearch className="h-5 w-5" />
               <span className="sr-only">Search</span>
             </button>
 
@@ -80,7 +82,7 @@ function Hero2({
                 className="text-white hover:text-orange-500"
                 onClick={toggleUserMenu}
               >
-                <User className="h-5 w-5" />
+                <PiUser className="h-5 w-5" />
                 <span className="sr-only">Account</span>
               </button>
               {isUserMenuOpen && (
@@ -104,7 +106,7 @@ function Hero2({
             {/* Cart Icon */}
             <Link href="/cart">
               <button className="text-white hover:text-orange-500">
-                <ShoppingBag className="h-5 w-5" />
+                <PiHandbag className="h-5 w-5" />
                 <span className="sr-only">Cart</span>
               </button>
             </Link>
