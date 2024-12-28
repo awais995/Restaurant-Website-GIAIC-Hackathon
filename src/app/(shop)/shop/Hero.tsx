@@ -1,12 +1,12 @@
 import React from 'react'
-import Hero2 from '../../components/PagesHero'
+import Hero2 from '../components/PagesHero'
 
-const ProductPage = () => {
+const Hero = () => {
   return (
     <div>
-      <Hero2
+        <Hero2
         logoText="Foodtuck"
-        menuTitle="Product Detail"
+        menuTitle="Shop"
         backgroundImage="/hero-page-bg.png"
         navigationLinks={[
           { label: 'Home', href: '/' },
@@ -17,12 +17,13 @@ const ProductPage = () => {
           { label: 'Contact', href: '/contact' }
         ]}
         breadcrumbs={[
-          { label: 'Shop', href: '/shop' },
-          { label: 'Product Detail', href: '/productpage' }
+          { label: 'Home', href: '/' },
+          { label: 'Shop', href: '/shop' }
         ]}
       />
+
     </div>
   )
 }
 
-export default ProductPage
+export default Hero
