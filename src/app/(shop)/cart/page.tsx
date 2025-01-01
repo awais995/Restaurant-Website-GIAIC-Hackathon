@@ -1,5 +1,7 @@
 import React from 'react'
 import Hero2 from '../components/PagesHero';
+import Bill from './Bills';
+import CartItems from './Cart';
 
 const Cart = () => {
   return (
@@ -21,6 +23,9 @@ const Cart = () => {
           { label: 'cart', href: '/cart' }
         ]}
       />
+
+      <CartItems />
+      <Bill />
     </div>
   )
 }

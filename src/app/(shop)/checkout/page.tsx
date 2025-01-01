@@ -1,5 +1,6 @@
 import React from 'react'
 import Hero2 from '../components/PagesHero';
+import CheckoutPage from './checkout';
 
 const Checkout = () => {
   return (
@@ -21,6 +22,7 @@ const Checkout = () => {
           { label: 'Checkout', href: '/checkout' }
         ]}
       />
+      <CheckoutPage />
     </div>
   )
 }

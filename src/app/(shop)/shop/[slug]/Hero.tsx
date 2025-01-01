@@ -1,12 +1,12 @@
 import React from 'react'
-import Hero2 from '../components/PagesHero'
+import Hero2 from '../../components/PagesHero'
 
-const Hero = () => {
+const ProductDetailHero = () => {
   return (
     <div>
-        <Hero2
+      <Hero2
         logoText="Foodtuck"
-        menuTitle="Our Shop"
+        menuTitle="Product Detail"
         backgroundImage="/hero-page-bg.png"
         navigationLinks={[
           { label: 'Home', href: '/' },
@@ -26,4 +26,4 @@ const Hero = () => {
   )
 }
 
-export default Hero
+export default ProductDetailHero

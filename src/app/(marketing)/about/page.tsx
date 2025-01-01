@@ -1,5 +1,6 @@
 import Hero2 from '@/app/(shop)/components/PagesHero';
 import React from 'react'
+import Aboutus from './Aboutus';
 
 const About = () => {
   return (
@@ -21,6 +22,8 @@ const About = () => {
           { label: 'About', href: '/about' }
         ]}
       />
+
+      <Aboutus />
     </div>
   )
 }

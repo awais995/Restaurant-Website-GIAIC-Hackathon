@@ -1,10 +1,50 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaTwitter } from "react-icons/fa";
 
-export const ProductDetail = () => {
-  const [quantity, setQuantity] = useState(1);
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  stock: number;
+  images: string[];
+}
+
+const initialProduct: Product = {
+  id: 1,
+  name: "Yummy Chicken Chup",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.",
+  price: 54.00,
+  stock: 10,
+  images: ["/1.png", "/2.png", "/3.png", "/4.png", "/main.png"],
+};
+
+const ProductDetailPage: React.FC = () => {
+  const [product, setProduct] = useState<Product>(initialProduct);
+  const [quantity, setQuantity] = useState<number>(1);
+  const [cart, setCart] = useState<Product[]>([]);
+  const [currentImage, setCurrentImage] = useState<string>(initialProduct.images[4]);
+
+  useEffect(() => {
+    setProduct(initialProduct);
+  }, []);
+
+  const handleAddToCart = () => {
+    if (product.stock >= quantity) {
+      const updatedProduct = { ...product, stock: product.stock - quantity };
+      setProduct(updatedProduct);
+      setCart([...cart, { ...product, stock: quantity }]);
+      setQuantity(1); // Reset quantity after adding to cart
+    } else {
+      alert("Insufficient stock available");
+    }
+  };
+
+  const handleChangeQuantity = (value: number) => {
+    setQuantity(value < 1 ? 1 : value);
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -13,22 +53,18 @@ export const ProductDetail = () => {
         <div className="w-full md:w-1/2 flex flex-col md:flex-row">
           {/* Thumbnail Gallery */}
           <div className="flex flex-row md:flex-col gap-2 md:mr-4">
-            {[
-              { src: "/1.png" },
-              { src: "/2.png" },
-              { src: "/3.png" },
-              { src: "/4.png" },
-            ].map((item, index) => (
+            {product.images.slice(0, 4).map((src, index) => (
               <div
                 key={index}
                 className="aspect-w-1 aspect-h-1 w-20 h-20 md:w-full md:h-24 rounded-lg overflow-hidden cursor-pointer hover:opacity-75"
+                onClick={() => setCurrentImage(src)}
               >
                 <Image
-                  src={item.src}
-                  alt={`Image ${index}`}
+                  src={src}
+                  alt={`Image ${index + 1}`}
                   width={100}
                   height={100}
-                  className="w-full h-full"
+                  className="w-full h-full object-cover"
                 />
               </div>
             ))}
@@ -38,8 +74,8 @@ export const ProductDetail = () => {
           <div className="flex-grow relative">
             <div className="aspect-w-16 aspect-h-12 rounded-lg overflow-hidden">
               <Image
-                src="/main.png"
-                alt="Yummy Chicken Chup"
+                src={currentImage}
+                alt="Main Product Image"
                 width={600}
                 height={350}
                 className="w-full h-[410px] object-cover rounded-lg"
@@ -52,7 +88,9 @@ export const ProductDetail = () => {
         <div className="w-full md:w-1/2">
           {/* Status Badge */}
           <div className="flex justify-between items-center">
-            <span className="bg-orange-500 text-white px-3 py-1 rounded-md">In stock</span>
+            <span className={`px-3 py-1 rounded-md ${product.stock > 0 ? 'bg-orange-500 text-white' : 'bg-red-500 text-white'}`}>
+              {product.stock > 0 ? 'In stock' : 'Out of stock'}
+            </span>
             <div className="flex gap-2">
               <button className="text-gray-500">← Prev</button>
               <button className="text-gray-500">Next →</button>
@@ -60,16 +98,15 @@ export const ProductDetail = () => {
           </div>
 
           {/* Product Title */}
-          <h1 className="text-3xl font-bold mt-4">Yummy Chicken Chup</h1>
+          <h1 className="text-3xl font-bold mt-4">{product.name}</h1>
 
           {/* Description */}
           <p className="text-gray-600 mt-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam
-            pellentesque bibendum non dui volutpat fringilla bibendum.
+            {product.description}
           </p>
 
           {/* Price */}
-          <div className="text-3xl font-bold mt-6">54.00$</div>
+          <div className="text-3xl font-bold mt-6">${product.price.toFixed(2)}</div>
 
           {/* Rating */}
           <div className="flex items-center mt-4">
@@ -88,7 +125,7 @@ export const ProductDetail = () => {
             <div className="flex border rounded-md">
               <button
                 className="px-4 py-2 border-r"
-                onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                onClick={() => handleChangeQuantity(quantity - 1)}
               >
                 −
               </button>
@@ -96,16 +133,20 @@ export const ProductDetail = () => {
                 type="number"
                 className="w-16 text-center"
                 value={quantity}
-                onChange={(e) => setQuantity(parseInt(e.target.value))}
+                onChange={(e) => handleChangeQuantity(parseInt(e.target.value))}
               />
               <button
                 className="px-4 py-2 border-l"
-                onClick={() => setQuantity(quantity + 1)}
+                onClick={() => handleChangeQuantity(quantity + 1)}
               >
                 +
               </button>
             </div>
-            <button className="bg-orange-500 text-white px-8 py-2 rounded-md hover:bg-orange-600">
+            <button
+              className="bg-orange-500 text-white px-8 py-2 rounded-md hover:bg-orange-600"
+              onClick={handleAddToCart}
+              disabled={product.stock === 0}
+            >
               Add to cart
             </button>
           </div>
@@ -159,4 +200,4 @@ export const ProductDetail = () => {
   );
 };
 
-export default ProductDetail;
+export default ProductDetailPage;
