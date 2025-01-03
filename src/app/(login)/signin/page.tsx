@@ -1,6 +1,6 @@
 import Hero2 from '@/app/(shop)/components/PagesHero';
 import React from 'react'
-import HeroSection from './Hero';
+import Hero from './Hero';
 import Signin from './signin';
 
 const SigninPage = () => {
@@ -24,7 +24,6 @@ const SigninPage = () => {
         ]}
       />
        <div>
-      <HeroSection />
       <Signin />
 
     </div>

@@ -37,9 +37,7 @@ export default function Home() {
       <OurChefs />
       <TestimonialsSection />
       <ActiveProcess />
-      <LatestBlog />
-      <Footer />
-    
+      <LatestBlog />    
     </div>
   );
 }

@@ -24,7 +24,6 @@ const SignupPage = () => {
         ]}
       />
       <div>
-      <Hero />
       <Signup />
     </div>
     </div>
