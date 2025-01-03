@@ -1,7 +1,9 @@
 import Hero2 from '@/app/(shop)/components/PagesHero';
 import React from 'react'
+import Hero from './Hero';
+import Signup from './signup';
 
-const Signup = () => {
+const SignupPage = () => {
   return (
     <div>
       <Hero2
@@ -21,8 +23,12 @@ const Signup = () => {
           { label: 'Signup', href: '/signup' }
         ]}
       />
+      <div>
+      <Hero />
+      <Signup />
+    </div>
     </div>
   )
 }
 
-export default Signup;
+export default SignupPage;

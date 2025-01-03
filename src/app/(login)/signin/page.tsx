@@ -1,7 +1,9 @@
 import Hero2 from '@/app/(shop)/components/PagesHero';
 import React from 'react'
+import HeroSection from './Hero';
+import Signin from './signin';
 
-const Signin = () => {
+const SigninPage = () => {
   return (
     <div>
       <Hero2
@@ -21,8 +23,15 @@ const Signin = () => {
           { label: 'Signin', href: '/signin' }
         ]}
       />
+       <div>
+      <HeroSection />
+      <Signin />
+
+    </div>
     </div>
   )
 }
 
-export default Signin;
+export default SigninPage;
+
+
