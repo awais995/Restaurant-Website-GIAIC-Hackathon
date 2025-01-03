@@ -1,0 +1,170 @@
+[
+    {
+      "id": 1,
+      "name": "Fresh Lime",
+      "imagesList": ["/freshlime.png", "/freshlime.png", "/freshlime.png", "/freshlime.png"],
+      "price": 38.0,
+      "image": "/freshlime.png",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.",
+      "stock": 10,
+      "originalPrice": 45.0,
+      "oldPrice": 50,
+      "ratting": 4,
+      "shipping": 10
+    },
+    {
+      "id": 2,
+      "name": "Chocolate Muffin",
+      "imagesList": ["/muffin.png", "/muffin.png", "/muffin.png", "/muffin.png"],
+      "price": 55.0,
+      "image": "/muffin.png",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.",
+      "stock": 0,
+      "onSale": true,
+      "ratting": 4,
+      "shipping": 10
+    },
+    {
+      "id": 3,
+      "name": "Burger",
+      "imagesList": ["/1.png", "/2.png", "/3.png", "/4.png", "/main.png"],
+      "price": 45.0,
+      "image": "/burger.png",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.",
+      "stock": 10,
+      "originalPrice": 45.0,
+      "ratting": 4,
+      "shipping": 10
+    },
+    {
+      "id": 4,
+      "name": "Country Burger",
+      "imagesList": ["/1.png", "/2.png", "/3.png", "/4.png", "/main.png"],
+      "price": 45.0,
+      "image": "/cuntry-burger.png",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.",
+      "stock": 10,
+      "ratting": 4,
+      "shipping": 10
+    },
+    {
+      "id": 5,
+      "name": "Drink",
+      "imagesList": ["/1.png", "/2.png", "/3.png", "/4.png"],
+      "price": 23.0,
+      "image": "/drink.png",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.",
+      "stock": 10,
+      "originalPrice": 45.0,
+      "ratting": 4,
+      "shipping": 10
+    },
+    {
+      "id": 6,
+      "name": "Pizza",
+      "imagesList": ["/1.png", "/2.png", "/3.png", "/4.png", "/main.png"],
+      "price": 43.0,
+      "image": "/pizza.png",
+      "ratting": 4,
+      "shipping": 10
+    },
+    {
+      "id": 7,
+      "name": "Cheese Butter",
+      "imagesList": ["/1.png", "/2.png", "/3.png", "/4.png", "/main.png"],
+      "price": 10.0,
+      "image": "/cheese-butter.png",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.",
+      "stock": 10,
+      "ratting": 4,
+      "shipping": 10
+    },
+    {
+      "id": 8,
+      "name": "Sandwiches",
+      "imagesList": ["/1.png", "/2.png", "/3.png", "/4.png", "/main.png"],
+      "price": 25.0,
+      "image": "/sandwich.png",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.",
+      "stock": 10,
+      "ratting": 4,
+      "shipping": 10
+    },
+    {
+      "id": 9,
+      "name": "Chicken Chup",
+      "imagesList": ["/1.png", "/2.png", "/3.png", "/4.png", "/main.png"],
+      "price": 45.0,
+      "image": "/chicken-chup.png",
+      "ratting": 4,
+      "shipping": 10
+    },
+    {
+      "id": 10,
+      "name": "Country Burger",
+      "imagesList": ["/1.png", "/2.png", "/3.png", "/4.png", "/main.png"],
+      "price": 45.0,
+      "image": "/cuntry-burger.png",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.",
+      "stock": 10,
+      "ratting": 4,
+      "shipping": 10
+    },
+    {
+      "id": 11,
+      "name": "Drink",
+      "imagesList": ["/1.png", "/2.png", "/3.png", "/4.png", "/main.png"],
+      "price": 23.0,
+      "image": "/drink.png",
+      "originalPrice": 45.0,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.",
+      "stock": 10,
+      "ratting": 4,
+      "shipping": 10
+
+    },
+    {
+      "id": 12,
+      "name": "Pizza",
+      "imagesList": ["/1.png", "/2.png", "/3.png", "/4.png", "/main.png"],
+      "price": 43.0,
+      "image": "/pizza.png",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.",
+      "stock": 10,
+      "ratting": 4,
+      "shipping": 10
+    },
+    {
+      "id": 13,
+      "name": "Cheese Butter",
+      "imagesList": ["/1.png", "/2.png", "/3.png", "/4.png", "/main.png"],
+      "price": 10.0,
+      "image": "/cheese-butter.png",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.",
+      "stock": 10,
+      "ratting": 4,
+      "shipping": 10
+    },
+    {
+      "id": 14,
+      "name": "Sandwiches",
+      "imagesList": ["/1.png", "/2.png", "/3.png", "/4.png", "/main.png"],
+      "price": 25.0,
+      "image": "/sandwich.png",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.",
+      "stock": 10,
+      "ratting": 4,
+      "shipping": 10
+    },
+    {
+      "id": 15,
+      "name": "Chicken Soup",
+      "imagesList": ["/1.png", "/2.png", "/3.png", "/4.png", "/main.png"],
+      "price": 45.0,
+      "image": "/chicken-chup.png",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.",
+      "ratting": 4,
+      "shipping": 10
+    }
+  ]
+  

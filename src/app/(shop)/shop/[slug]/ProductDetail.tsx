@@ -1,49 +1,68 @@
 "use client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaTwitter } from "react-icons/fa";
+import products from "../../products.json";
+import { SimilarProducts } from "./PDSections";
+import Link from "next/link";
 
-interface Product {
+// Define Product type if not already defined
+type Product = {
   id: number;
   name: string;
+  image: string;
   description: string;
   price: number;
   stock: number;
-  images: string[];
-}
-
-const initialProduct: Product = {
-  id: 1,
-  name: "Yummy Chicken Chup",
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.",
-  price: 54.00,
-  stock: 10,
-  images: ["/1.png", "/2.png", "/3.png", "/4.png", "/main.png"],
+  imagesList: string[];
 };
 
 const ProductDetailPage: React.FC = () => {
-  const [product, setProduct] = useState<Product>(initialProduct);
+  const { slug } = useParams();
+  
+  const [product, setProduct] = useState<Product | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
   const [cart, setCart] = useState<Product[]>([]);
-  const [currentImage, setCurrentImage] = useState<string>(initialProduct.images[4]);
+  const [currentImage, setCurrentImage] = useState<string>("");
 
   useEffect(() => {
-    setProduct(initialProduct);
-  }, []);
+    if (slug) {
+      const foundProduct: any = products.find((prod) => prod.id.toString() === slug);
+      if (foundProduct) {
+        setProduct(foundProduct);
+        setCurrentImage(foundProduct.imagesList[0]);
+      }
+    }
+  }, [slug]);
+
+  if (!product) {
+    return <div>Loading...</div>;
+  }
 
   const handleAddToCart = () => {
     if (product.stock >= quantity) {
       const updatedProduct = { ...product, stock: product.stock - quantity };
+      const updatedCart = [...cart, { ...product, stock: quantity }];
       setProduct(updatedProduct);
-      setCart([...cart, { ...product, stock: quantity }]);
-      setQuantity(1); // Reset quantity after adding to cart
+      setCart(updatedCart);
+      setQuantity(1);
+  
+      // Save the updated cart to localStorage
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+  
     } else {
       alert("Insufficient stock available");
     }
   };
+  
 
   const handleChangeQuantity = (value: number) => {
     setQuantity(value < 1 ? 1 : value);
+  };
+
+  const handleProductChange = (newProduct: Product) => {
+    setProduct(newProduct);
   };
 
   return (
@@ -53,7 +72,7 @@ const ProductDetailPage: React.FC = () => {
         <div className="w-full md:w-1/2 flex flex-col md:flex-row">
           {/* Thumbnail Gallery */}
           <div className="flex flex-row md:flex-col gap-2 md:mr-4">
-            {product.images.slice(0, 4).map((src, index) => (
+            {product.imagesList.slice(0, 4).map((src, index) => (
               <div
                 key={index}
                 className="aspect-w-1 aspect-h-1 w-20 h-20 md:w-full md:h-24 rounded-lg overflow-hidden cursor-pointer hover:opacity-75"
@@ -74,7 +93,7 @@ const ProductDetailPage: React.FC = () => {
           <div className="flex-grow relative">
             <div className="aspect-w-16 aspect-h-12 rounded-lg overflow-hidden">
               <Image
-                src={currentImage}
+                src={product.image}
                 alt="Main Product Image"
                 width={600}
                 height={350}
@@ -142,60 +161,52 @@ const ProductDetailPage: React.FC = () => {
                 +
               </button>
             </div>
+            <Link href={`${product.id}/cart`}>
             <button
-              className="bg-orange-500 text-white px-8 py-2 rounded-md hover:bg-orange-600"
+              className="px-4 py-2 bg-orange-500 text-white rounded-md"
               onClick={handleAddToCart}
-              disabled={product.stock === 0}
             >
-              Add to cart
+              Add to Cart
             </button>
+            </Link>
           </div>
-
-          {/* Wishlist and Compare */}
-          <div className="flex gap-4 mt-6">
-            <button className="flex items-center gap-2 text-gray-600">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                />
-              </svg>
-              Add to Wishlist
-            </button>
-            <button className="flex items-center gap-2 text-gray-600">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
-                />
-              </svg>
-              Compare
-            </button>
-          </div>
-
-          {/* Categories and Tags */}
-          <div className="mt-6 space-y-2">
-            <p className="text-gray-600">Category: <span className="text-gray-900">Pizza</span></p>
-            <p className="text-gray-600">Tag: <span className="text-gray-900">Our Shop</span></p>
-          </div>
-
-          {/* Social Share */}
-          <div className="flex items-center gap-4 mt-6">
-            <span className="text-gray-600">Share:</span>
-            <div className="flex gap-3">
-              <FaYoutube />
-              <FaFacebook />
-              <FaTwitter />
-              <FaInstagram />
-              <FaLinkedin />
-            </div>
-          </div>
+          <div className="flex gap-4 mt-8">
+        <a href="#" className="text-gray-500 hover:text-gray-700"><FaFacebook size={24} /></a>
+        <a href="#" className="text-gray-500 hover:text-gray-700"><FaInstagram size={24} /></a>
+        <a href="#" className="text-gray-500 hover:text-gray-700"><FaLinkedin size={24} /></a>
+        <a href="#" className="text-gray-500 hover:text-gray-700"><FaYoutube size={24} /></a>
+        <a href="#" className="text-gray-500 hover:text-gray-700"><FaTwitter size={24} /></a>
+      </div>
         </div>
       </div>
+
+      {/* Product Description */}
+      <section className="px-6 py-8 mx-20 m-6">
+      <div className="flex space-x-4 border-b pb-2">
+        <button className="text-md font-semibold border-b-2 p-3 text-white rounded-lg bg-orange-500">Description</button>
+        <button className="text-lg text-gray-500">Reviews (24)</button>
+      </div>
+      <p className="mt-4 text-gray-700 leading-relaxed ">
+      Nam tristique porta ligula, vel viverra sem eleifend nec. Nulla sed purus augue, eu euismod tellus. Nam mattis eros nec mi sagittis sagittis. Vestibulum suscipit cursus bibendum. Integer at justo eget sem auctor auctor eget vitae arcu. Nam tempor malesuada porttitor. Nulla quis dignissim ipsum. Aliquam pulvinar iaculis justo, sit amet interdum sem hendrerit vitae. Vivamus vel erat tortor. Nulla facilisi. In nulla quam, lacinia eu aliquam ac, aliquam in nisl.
+      </p>
+      <p className="mt-4 text-gray-700 leading-relaxed ">
+      Suspendisse cursus sodales placerat. Morbi eu lacinia ex. Curabitur blandit justo urna, id porttitor est dignissim nec. Pellentesque scelerisque hendrerit posuere. Sed at dolor quis nisi rutrum accumsan et sagittis massa. Aliquam aliquam accumsan lectus quis auctor. Curabitur rutrum massa at volutpat placerat. Duis sagittis vehicula fermentum. Integer eu vulputate justo. Aenean pretium odio vel tempor sodales. Suspendisse eu fringilla leo, non aliquet sem.
+      </p>
+    </section>
+
+ {/* Key Benefits */}
+    <section className="px-6 py-4 mx-20">
+      <h2 className="text-lg font-semibold mb-2">Key Benefits</h2>
+      <ul className="list-disc ml-6 text-gray-700">
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>Maecenas ullamcorper est et massa mattis condimentum.</li>
+        <li>Vestibulum sed massa vel ipsum imperdiet malesuada id tempus nisl.</li>
+        <li>Etiam nec massa et lectus faucibus ornare congue in nunc.</li>
+        <li>Mauris eget diam magna, in blandit turpis.</li>
+      </ul>
+    </section>
+
+      <SimilarProducts onProductChange={handleProductChange} />
     </div>
   );
 };

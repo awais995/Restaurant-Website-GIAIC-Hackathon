@@ -1,12 +1,15 @@
-import React from 'react'
-import Hero2 from '../components/PagesHero';
-import Bill from './Bills';
-import CartItems from './Cart';
+"use client";
+import { useState } from "react";
+import Hero2 from '../../../components/PagesHero';
+import CartItem from "./Cart";
+import Bill from "./Bills";
 
-const Cart = () => {
+export default function CartPage() {
+  const [subtotal, setSubtotal] = useState(0);
+
   return (
     <div>
-      <Hero2
+       <Hero2
         logoText="Foodtuck"
         menuTitle="Cart"
         backgroundImage="/hero-page-bg.png"
@@ -21,13 +24,11 @@ const Cart = () => {
         breadcrumbs={[
           { label: 'Shop', href: '/shop' },
           { label: 'cart', href: '/cart' }
-        ]}
-      />
-
-      <CartItems />
-      <Bill />
+        ]}/>
+        
+      <CartItem updateCartSummary={setSubtotal} />
+      <Bill subtotal={subtotal} />
     </div>
-  )
+  );
 }
 
-export default Cart;
