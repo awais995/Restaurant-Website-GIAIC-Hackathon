@@ -1,6 +1,6 @@
 import React from 'react'
 import ProductDetailHero from './Hero'
-import ProductDetailPage from './ProductDetail'
+import ProductDetailPage from '../../ProductDetail'
 
 const ProductDetail = () => {
   return (

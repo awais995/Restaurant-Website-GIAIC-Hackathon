@@ -1,11 +1,29 @@
-// components/Checkout.jsx
-import Image from 'next/image';
+"use client";
+import Image from "next/image";
+import { useCart } from "../shop/context/CartContext"; // Import useCart
+import { useRouter } from "next/navigation"; // Import useRouter for navigation
 
 export default function CheckoutPage() {
+  const { cart } = useCart(); // Access cart data from the context
+  const router = useRouter(); // Initialize useRouter for navigation
+
+  // Calculate subtotal
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  // Calculate tax (assuming 10% tax rate)
+  const tax = subtotal * 0.1;
+
+  // Calculate total
+  const total = subtotal + tax;
+
+  // Handle navigation to the shipping page
+  const handleProceedToShipping = () => {
+    router.push("/shipping"); // Navigate to the shipping page
+  };
+
   return (
     <div className="min-h-screen bg-white p-6 lg:p-20">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
-        
         {/* Left Section: Shipping and Billing Address */}
         <div className="bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-xl font-semibold mb-4">Shipping Address</h2>
@@ -72,10 +90,16 @@ export default function CheckoutPage() {
           </div>
 
           <div className="mt-6 flex justify-between">
-            <button className="bg-gray-200 px-4 py-2 rounded-lg">
+            <button
+              className="bg-gray-200 px-4 py-2 rounded-lg"
+              onClick={() => router.push("/cart")} // Navigate back to the cart
+            >
               &larr; Back to cart
             </button>
-            <button className="bg-orange-500 text-white px-4 py-2 rounded-lg">
+            <button
+              className="bg-orange-500 text-white px-4 py-2 rounded-lg"
+              onClick={handleProceedToShipping} // Proceed to shipping
+            >
               Proceed to shipping &rarr;
             </button>
           </div>
@@ -86,23 +110,23 @@ export default function CheckoutPage() {
           <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
           <div className="space-y-4">
             {/* Product List */}
-            {[1, 2, 3].map((item) => (
+            {cart.map((item) => (
               <div
-                key={item}
+                key={item.id}
                 className="flex items-center justify-between border-b pb-2"
               >
                 <Image
-                  src="/shopimages/chicken-tikka.png"
-                  alt="Chicken Tikka Kabab"
+                  src={item.image}
+                  alt={item.name}
                   width={64}
                   height={64}
                   className="rounded-lg"
                 />
                 <div className="flex-1 ml-4">
-                  <h3 className="font-medium">Chicken Tikka Kabab</h3>
-                  <p className="text-sm text-gray-500">150 gm net</p>
+                  <h3 className="font-medium">{item.name}</h3>
+                  <p className="text-sm text-gray-500">Quantity: {item.quantity}</p>
                 </div>
-                <p className="font-medium">$5</p>
+                <p className="font-medium">${(item.price * item.quantity).toFixed(2)}</p>
               </div>
             ))}
 
@@ -110,17 +134,20 @@ export default function CheckoutPage() {
             <div className="space-y-2">
               <div className="flex justify-between">
                 <span>Sub-total</span>
-                <span>$15</span>
+                <span>${subtotal.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
-                <span>Tax</span>
-                <span>$1.50</span>
+                <span>Tax (10%)</span>
+                <span>${tax.toFixed(2)}</span>
               </div>
               <div className="flex justify-between font-semibold">
                 <span>Total</span>
-                <span>$16.50</span>
+                <span>${total.toFixed(2)}</span>
               </div>
-              <button className="bg-orange-500 text-white px-4 py-2 rounded-lg w-full">
+              <button
+                className="bg-orange-500 text-white px-4 py-2 rounded-lg w-full"
+                onClick={handleProceedToShipping} // Proceed to shipping
+              >
                 Proceed to shipping &rarr;
               </button>
             </div>

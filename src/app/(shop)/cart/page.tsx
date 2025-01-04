@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Hero2 from '../../../components/PagesHero';
+import Hero2 from '../components/PagesHero';
 import CartItem from "./Cart";
 import Bill from "./Bills";
 

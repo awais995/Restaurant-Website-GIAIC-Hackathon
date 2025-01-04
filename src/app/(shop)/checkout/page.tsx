@@ -1,6 +1,7 @@
 import React from 'react'
-import Hero2 from '../components/PagesHero';
+
 import CheckoutPage from './checkout';
+import Hero2 from '../components/PagesHero';
 
 const Checkout = () => {
   return (

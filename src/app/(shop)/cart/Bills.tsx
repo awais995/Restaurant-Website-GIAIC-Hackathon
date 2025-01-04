@@ -1,11 +1,13 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation"; // Import useRouter
 
 export default function Bill({ subtotal }: { subtotal: number }) {
   const [shippingCharge, setShippingCharge] = useState(10); // Default shipping charge
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0); // Discount percentage or fixed value
   const [appliedCoupon, setAppliedCoupon] = useState(false);
+  const router = useRouter(); // Initialize useRouter
 
   const totalAmount = subtotal + shippingCharge - discount;
 
@@ -20,6 +22,10 @@ export default function Bill({ subtotal }: { subtotal: number }) {
       alert("Invalid coupon code. Please try again.");
       setAppliedCoupon(false);
     }
+  };
+
+  const handleProceedToCheckout = () => {
+    router.push("/checkout"); // Navigate to the checkout page
   };
 
   return (
@@ -75,7 +81,10 @@ export default function Bill({ subtotal }: { subtotal: number }) {
               <span className="text-sm font-medium">${totalAmount.toFixed(2)}</span>
             </div>
           </div>
-          <button className="mt-6 w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600">
+          <button
+            onClick={handleProceedToCheckout} // Add onClick handler
+            className="mt-6 w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600"
+          >
             Proceed to Checkout
           </button>
         </div>

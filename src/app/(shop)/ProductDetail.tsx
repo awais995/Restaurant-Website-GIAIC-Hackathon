@@ -1,13 +1,13 @@
 "use client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaTwitter } from "react-icons/fa";
-import products from "../../products.json";
-import { SimilarProducts } from "./PDSections";
-import Link from "next/link";
+import products from "./products.json";
+import { SimilarProducts } from "./shop/[slug]/PDSections";
+import { useParams, useRouter } from "next/navigation";
+import { useCart } from "./shop/context/CartContext"; // Import useCart
 
-// Define Product type if not already defined
+// Define Product type with quantity
 type Product = {
   id: number;
   name: string;
@@ -16,53 +16,49 @@ type Product = {
   price: number;
   stock: number;
   imagesList: string[];
+  quantity: number; // Add this property
 };
 
 const ProductDetailPage: React.FC = () => {
   const { slug } = useParams();
-  
+  const { addToCart } = useCart(); // Use the addToCart function from CartContext
+  const router = useRouter(); // Initialize useRouter
   const [product, setProduct] = useState<Product | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
-  const [cart, setCart] = useState<Product[]>([]);
   const [currentImage, setCurrentImage] = useState<string>("");
 
   useEffect(() => {
     if (slug) {
       const foundProduct: any = products.find((prod) => prod.id.toString() === slug);
       if (foundProduct) {
-        setProduct(foundProduct);
+        setProduct({ ...foundProduct, quantity: 1 }); // Initialize quantity
         setCurrentImage(foundProduct.imagesList[0]);
       }
     }
   }, [slug]);
 
-  if (!product) {
-    return <div>Loading...</div>;
-  }
+  // Handle changing the quantity
+  const handleChangeQuantity = (newQuantity: number) => {
+    setQuantity(Math.max(1, Number(newQuantity))); // Ensure quantity is a number
+  };
 
+  // Handle product change
+  const handleProductChange = (newProduct: Product) => {
+    setProduct(newProduct); // Update the product state
+  };
+
+  // If the product is not found, show a loading message
+  if (!product) return <div>Loading...</div>;
+
+  // Handle adding the product to the cart
   const handleAddToCart = () => {
     if (product.stock >= quantity) {
-      const updatedProduct = { ...product, stock: product.stock - quantity };
-      const updatedCart = [...cart, { ...product, stock: quantity }];
-      setProduct(updatedProduct);
-      setCart(updatedCart);
-      setQuantity(1);
-  
-      // Save the updated cart to localStorage
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-  
+      addToCart({ ...product, quantity }, quantity); // Pass the product with updated quantity
+      alert("Product added to cart!"); // Show a success message
+      router.push("/cart"); // Navigate to the cart page
     } else {
-      alert("Insufficient stock available");
+      alert("Insufficient stock available"); // Show an error message if the product is out of stock
     }
-  };
-  
-
-  const handleChangeQuantity = (value: number) => {
-    setQuantity(value < 1 ? 1 : value);
-  };
-
-  const handleProductChange = (newProduct: Product) => {
-    setProduct(newProduct);
   };
 
   return (
@@ -93,7 +89,7 @@ const ProductDetailPage: React.FC = () => {
           <div className="flex-grow relative">
             <div className="aspect-w-16 aspect-h-12 rounded-lg overflow-hidden">
               <Image
-                src={product.image}
+                src={currentImage || product.image}
                 alt="Main Product Image"
                 width={600}
                 height={350}
@@ -145,6 +141,7 @@ const ProductDetailPage: React.FC = () => {
               <button
                 className="px-4 py-2 border-r"
                 onClick={() => handleChangeQuantity(quantity - 1)}
+                disabled={quantity <= 1} // Disable if quantity is 1
               >
                 −
               </button>
@@ -152,59 +149,61 @@ const ProductDetailPage: React.FC = () => {
                 type="number"
                 className="w-16 text-center"
                 value={quantity}
-                onChange={(e) => handleChangeQuantity(parseInt(e.target.value))}
+                onChange={(e) => handleChangeQuantity(parseInt(e.target.value, 10))}
+                min="1"
+                max={product.stock}
               />
               <button
                 className="px-4 py-2 border-l"
                 onClick={() => handleChangeQuantity(quantity + 1)}
+                disabled={quantity >= product.stock} // Disable if quantity exceeds stock
               >
                 +
               </button>
             </div>
-            <Link href={`${product.id}/cart`}>
             <button
               className="px-4 py-2 bg-orange-500 text-white rounded-md"
               onClick={handleAddToCart}
+              disabled={product.stock === 0} // Disable if product is out of stock
             >
-              Add to Cart
+              {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
             </button>
-            </Link>
           </div>
           <div className="flex gap-4 mt-8">
-        <a href="#" className="text-gray-500 hover:text-gray-700"><FaFacebook size={24} /></a>
-        <a href="#" className="text-gray-500 hover:text-gray-700"><FaInstagram size={24} /></a>
-        <a href="#" className="text-gray-500 hover:text-gray-700"><FaLinkedin size={24} /></a>
-        <a href="#" className="text-gray-500 hover:text-gray-700"><FaYoutube size={24} /></a>
-        <a href="#" className="text-gray-500 hover:text-gray-700"><FaTwitter size={24} /></a>
-      </div>
+            <a href="#" className="text-gray-500 hover:text-gray-700"><FaFacebook size={24} /></a>
+            <a href="#" className="text-gray-500 hover:text-gray-700"><FaInstagram size={24} /></a>
+            <a href="#" className="text-gray-500 hover:text-gray-700"><FaLinkedin size={24} /></a>
+            <a href="#" className="text-gray-500 hover:text-gray-700"><FaYoutube size={24} /></a>
+            <a href="#" className="text-gray-500 hover:text-gray-700"><FaTwitter size={24} /></a>
+          </div>
         </div>
       </div>
 
       {/* Product Description */}
       <section className="px-6 py-8 mx-20 m-6">
-      <div className="flex space-x-4 border-b pb-2">
-        <button className="text-md font-semibold border-b-2 p-3 text-white rounded-lg bg-orange-500">Description</button>
-        <button className="text-lg text-gray-500">Reviews (24)</button>
-      </div>
-      <p className="mt-4 text-gray-700 leading-relaxed ">
-      Nam tristique porta ligula, vel viverra sem eleifend nec. Nulla sed purus augue, eu euismod tellus. Nam mattis eros nec mi sagittis sagittis. Vestibulum suscipit cursus bibendum. Integer at justo eget sem auctor auctor eget vitae arcu. Nam tempor malesuada porttitor. Nulla quis dignissim ipsum. Aliquam pulvinar iaculis justo, sit amet interdum sem hendrerit vitae. Vivamus vel erat tortor. Nulla facilisi. In nulla quam, lacinia eu aliquam ac, aliquam in nisl.
-      </p>
-      <p className="mt-4 text-gray-700 leading-relaxed ">
-      Suspendisse cursus sodales placerat. Morbi eu lacinia ex. Curabitur blandit justo urna, id porttitor est dignissim nec. Pellentesque scelerisque hendrerit posuere. Sed at dolor quis nisi rutrum accumsan et sagittis massa. Aliquam aliquam accumsan lectus quis auctor. Curabitur rutrum massa at volutpat placerat. Duis sagittis vehicula fermentum. Integer eu vulputate justo. Aenean pretium odio vel tempor sodales. Suspendisse eu fringilla leo, non aliquet sem.
-      </p>
-    </section>
+        <div className="flex space-x-4 border-b pb-2">
+          <button className="text-md font-semibold border-b-2 p-3 text-white rounded-lg bg-orange-500">Description</button>
+          <button className="text-lg text-gray-500">Reviews (24)</button>
+        </div>
+        <p className="mt-4 text-gray-700 leading-relaxed ">
+          Nam tristique porta ligula, vel viverra sem eleifend nec. Nulla sed purus augue, eu euismod tellus. Nam mattis eros nec mi sagittis sagittis. Vestibulum suscipit cursus bibendum. Integer at justo eget sem auctor auctor eget vitae arcu. Nam tempor malesuada porttitor. Nulla quis dignissim ipsum. Aliquam pulvinar iaculis justo, sit amet interdum sem hendrerit vitae. Vivamus vel erat tortor. Nulla facilisi. In nulla quam, lacinia eu aliquam ac, aliquam in nisl.
+        </p>
+        <p className="mt-4 text-gray-700 leading-relaxed ">
+          Suspendisse cursus sodales placerat. Morbi eu lacinia ex. Curabitur blandit justo urna, id porttitor est dignissim nec. Pellentesque scelerisque hendrerit posuere. Sed at dolor quis nisi rutrum accumsan et sagittis massa. Aliquam aliquam accumsan lectus quis auctor. Curabitur rutrum massa at volutpat placerat. Duis sagittis vehicula fermentum. Integer eu vulputate justo. Aenean pretium odio vel tempor sodales. Suspendisse eu fringilla leo, non aliquet sem.
+        </p>
+      </section>
 
- {/* Key Benefits */}
-    <section className="px-6 py-4 mx-20">
-      <h2 className="text-lg font-semibold mb-2">Key Benefits</h2>
-      <ul className="list-disc ml-6 text-gray-700">
-        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-        <li>Maecenas ullamcorper est et massa mattis condimentum.</li>
-        <li>Vestibulum sed massa vel ipsum imperdiet malesuada id tempus nisl.</li>
-        <li>Etiam nec massa et lectus faucibus ornare congue in nunc.</li>
-        <li>Mauris eget diam magna, in blandit turpis.</li>
-      </ul>
-    </section>
+      {/* Key Benefits */}
+      <section className="px-6 py-4 mx-20">
+        <h2 className="text-lg font-semibold mb-2">Key Benefits</h2>
+        <ul className="list-disc ml-6 text-gray-700">
+          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+          <li>Maecenas ullamcorper est et massa mattis condimentum.</li>
+          <li>Vestibulum sed massa vel ipsum imperdiet malesuada id tempus nisl.</li>
+          <li>Etiam nec massa et lectus faucibus ornare congue in nunc.</li>
+          <li>Mauris eget diam magna, in blandit turpis.</li>
+        </ul>
+      </section>
 
       <SimilarProducts onProductChange={handleProductChange} />
     </div>
