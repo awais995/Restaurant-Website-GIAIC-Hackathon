@@ -11,7 +11,7 @@ const ExperienceItem = [
     },
     {
 
-        src:"/burger.png",
+        src:"/Burger-icon.png",
       value: "320",
       label: "Items Of Food"
     },
@@ -22,7 +22,7 @@ const ExperienceItem = [
       label: "Years Of Experienced"
     },
     {  
-      src:"/pizza.png",
+      src:"/Pizza-slice-icon.png",
       value: "220",
       label: "Happy Customers"
     }
