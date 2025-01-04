@@ -26,7 +26,7 @@ export default function CartPage() {
           { label: 'cart', href: '/cart' }
         ]}/>
         
-      <CartItem updateCartSummary={setSubtotal} />
+      <CartItem />
       <Bill subtotal={subtotal} />
     </div>
   );
