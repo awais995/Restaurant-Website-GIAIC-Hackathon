@@ -14,6 +14,7 @@ type Product = {
   price: number;
   image: string;
   originalPrice?: number;
+  quantity: number; // Required property
   onSale?: boolean;
 };
 

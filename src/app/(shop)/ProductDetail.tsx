@@ -16,7 +16,7 @@ type Product = {
   price: number;
   stock: number;
   imagesList: string[];
-  quantity: number; // Add this property
+  quantity?: number; // Add this property
 };
 
 const ProductDetailPage: React.FC = () => {
@@ -44,8 +44,9 @@ const ProductDetailPage: React.FC = () => {
 
   // Handle product change
   const handleProductChange = (newProduct: Product) => {
-    setProduct(newProduct); // Update the product state
-  };
+    setProduct({ ...newProduct, quantity: newProduct.quantity ?? 1 }); // Ensure quantity is included
+};
+
 
   // If the product is not found, show a loading message
   if (!product) return <div>Loading...</div>;
@@ -205,7 +206,9 @@ const ProductDetailPage: React.FC = () => {
         </ul>
       </section>
 
-      <SimilarProducts onProductChange={handleProductChange} />
+      <SimilarProducts onProductChange={(product) => handleProductChange({ ...product, quantity: 1 })} />
+
+
     </div>
   );
 };

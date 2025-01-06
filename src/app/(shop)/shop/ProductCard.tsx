@@ -7,7 +7,7 @@ type Product = {
   image: string;
   originalPrice?: number;
   onSale?: boolean;
-  quantity: number; // Add this line
+  quantity?: number; // Add this line
 };
 
 type ProductCardProps = {
