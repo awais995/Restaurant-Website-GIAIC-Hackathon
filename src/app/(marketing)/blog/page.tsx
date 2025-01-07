@@ -1,5 +1,6 @@
 import Hero2 from '@/app/(shop)/components/PagesHero';
 import React from 'react'
+import BlogCard from './Blog';
 
 const Blog = () => {
   return (
@@ -21,6 +22,8 @@ const Blog = () => {
           { label: 'Blog', href: '/blog' }
         ]}
       />
+
+      <BlogCard />
     </div>
   )
 }

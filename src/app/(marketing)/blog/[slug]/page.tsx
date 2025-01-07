@@ -1,5 +1,6 @@
 import Hero2 from '@/app/(shop)/components/PagesHero'
 import React from 'react'
+import BlogDetailPage from './BlogDetailPage';
 
 const BlogDetail = () => {
   return (
@@ -21,6 +22,7 @@ const BlogDetail = () => {
           { label: 'Blog-Detail', href: '/blog/blog-detail' }
         ]}
       />
+      <BlogDetailPage />
     </div>
   )
 }
