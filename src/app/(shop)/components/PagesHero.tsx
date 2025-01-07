@@ -104,7 +104,7 @@ function Hero2({
             </div>
 
             {/* Cart Icon */}
-            <Link href={`/shop/1/cart`}>
+            <Link href={`/cart`}>
               <button className="text-white hover:text-orange-500">
                 <PiHandbag className="h-5 w-5" />
                 <span className="sr-only">Cart</span>

@@ -80,7 +80,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
             />
             <CiSearch className="absolute top-2.5 right-3 w-5 h-5" />
           </div>
-          <Link href={`/shop/1/cart`}>
+          <Link href={`/cart`}>
             <IoBagHandle className="w-6 h-6" />
           </Link>
         </div>

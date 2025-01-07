@@ -27,7 +27,6 @@ export default function CartPage() {
         ]}/>
         
       <CartItem />
-      <Bill subtotal={subtotal} />
     </div>
   );
 }

@@ -2,7 +2,6 @@ import AboutUs from "@/components/Aboutus";
 import ActiveProcess from "@/components/ActiveProcess";
 import Experiences from "@/components/Experiences";
 import FoodCategory from "@/components/FoodCategory";
-import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import LatestBlog from "@/components/LatestBlogs";
 import Menu from "@/components/Menu";

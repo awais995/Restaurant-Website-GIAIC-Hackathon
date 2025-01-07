@@ -1,7 +1,57 @@
 import Image from "next/image";
 import { IoPlayOutline } from "react-icons/io5";
 
+// Define the type for team members
+interface TeamMember {
+  name: string;
+  role: string;
+  image: string;
+}
+
+// Team member data
+const teamMembers: TeamMember[] = [
+  {
+    name: "Mark Henry",
+    role: "Sweetest",
+    image: "/team/mark-henry.png",
+  },
+  {
+    name: "Lucky Helen",
+    role: "Simple",
+    image: "/team/lucky-helen.png",
+  },
+  {
+    name: "Meow Henry",
+    role: "Crest",
+    image: "/team/meow-henry.png",
+  },
+  {
+    name: "Tom Henrrow",
+    role: "Girl",
+    image: "/team/tom-henrrow.png",
+  },
+  {
+    name: "Crest",
+    role: "Tonner",
+    image: "/team/crest.png",
+  },
+  {
+    name: "Girl",
+    role: "Sweetest",
+    image: "/team/girl.png",
+  },
+];
+
+
+
 export default function AboutUs() {
+  const teamMembers = [
+    { name: 'Mark Henry', role: 'Owner', image: '/team.png' },
+    { name: 'Lucky Helen', role: 'Chef', image: '/team.png' },
+    { name: 'Moon Henry', role: 'Founder', image: '/team.png' },
+    { name: 'Tom Morrow', role: 'Specialist', image: '/team.png' },
+  ];
+
   return (
     <div className="bg-white">
       {/* About Us Section */}
@@ -108,6 +158,61 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
+
+      <section>
+        <div className="bg-orange-500">
+          <div className="container mx-auto py-12 px-4 text-center">
+            <h2 className="text-3xl font-bold text-white mb-2">Team Member</h2>
+            <p className="text-white mb-8">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Velit facilisi phasellus dictum.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {teamMembers.map((member, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+                >
+                  <div className="relative w-full h-48">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                  <div className="p-4 text-center">
+                    <h3 className="text-lg font-semibold text-gray-800">{member.name}</h3>
+                    <p className="text-sm text-gray-500">{member.role}</p>
+                    <div className="flex justify-center space-x-2 mt-4">
+                      <a
+                        href="#"
+                        className="text-gray-500 hover:text-orange-500 transition-colors duration-200"
+                      >
+                        <i className="fab fa-facebook-f"></i>
+                      </a>
+                      <a
+                        href="#"
+                        className="text-gray-500 hover:text-orange-500 transition-colors duration-200"
+                      >
+                        <i className="fab fa-twitter"></i>
+                      </a>
+                      <a
+                        href="#"
+                        className="text-gray-500 hover:text-orange-500 transition-colors duration-200"
+                      >
+                        <i className="fab fa-instagram"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      );
+
     </div>
   );
 }

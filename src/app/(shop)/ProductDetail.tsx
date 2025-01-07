@@ -16,7 +16,7 @@ type Product = {
   price: number;
   stock: number;
   imagesList: string[];
-  quantity?: number; // Add this property
+  quantity: number; // Add this property
 };
 
 const ProductDetailPage: React.FC = () => {
@@ -90,7 +90,7 @@ const ProductDetailPage: React.FC = () => {
           <div className="flex-grow relative">
             <div className="aspect-w-16 aspect-h-12 rounded-lg overflow-hidden">
               <Image
-                src={currentImage || product.image}
+                src={product.image}
                 alt="Main Product Image"
                 width={600}
                 height={350}
