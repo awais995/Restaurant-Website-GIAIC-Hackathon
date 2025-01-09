@@ -50,6 +50,66 @@ export const BlogPosts = [
       postDate: 'May 15, 2022',
       content: `Hello Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...`
     },
+    {
+      id: 5,
+      date: '15 May',
+      image: '/blog-post-2.png',
+      title: 'How to Make Desserts That Everyone Will Love',
+      description: 'Ut enim ad minima veniam, quis nostrum exercitationem...',
+      author: 'Admin',
+      comments: 2,
+      postDate: 'May 15, 2022',
+      content: `Hello Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...`
+    },
+    {
+      id: 6,
+      date: '15 May',
+      image: '/blog-post-3.png',
+      title: 'How to Make Desserts That Everyone Will Love',
+      description: 'Ut enim ad minima veniam, quis nostrum exercitationem...',
+      author: 'Admin',
+      comments: 2,
+      postDate: 'May 15, 2022',
+      content: `Hello Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...`
+    },
+    {
+      id: 7,
+      date: '14 Feb',
+      image: '/blog-post-1.png',
+      title: '10 Reasons To Do A Digital Detox Challenge',
+      description: 'At vero eos et accusam et justo duo dolores et ea rebum...',
+      author: 'Admin',
+      comments: 3,
+      postDate: 'Feb 14, 2022',
+      content: `Hello Ut enim ad minima veniam, quis nostrum exercitationem
+                Ut enim ad minima veniam, quis nostrum exercitationem
+                Ut enim ad minima veniam, quis nostrum exercitationem
+                Ut enim ad minima veniam, quis nostrum exercitationem
+                Ut enim ad minima veniam, quis nostrum exercitationem
+                Ut enim ad minima veniam, quis nostrum exercitationem`
+    },
+    {
+      id: 8,
+      date: '20 Mar',
+      image: '/blog-post-2.png',
+      title: '5 Healthy Recipes To Boost Your Energy',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
+      author: 'Admin',
+      comments: 5,
+      postDate: 'Mar 20, 2022',
+      content: `Hello Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...`
+    },
+    {
+      id: 9,
+      date: '10 Apr',
+      image: '/blog-post-3.png',
+      title: 'The Ultimate Guide to Gourmet Burgers',
+      description: 'Sed diam nonumy eirmod tempor invidunt ut labore...',
+      author: 'Admin',
+      comments: 8,
+      postDate: 'Apr 10, 2022',
+      Content: `Hello Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...Ut enim ad minima veniam, quis nostrum exercitationem...`
+    },
   ];
   
 

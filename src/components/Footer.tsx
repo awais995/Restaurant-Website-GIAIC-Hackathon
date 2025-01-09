@@ -50,7 +50,7 @@ const Footer: React.FC<FooterProps> = () => {
           />
           <button
             onClick={handleSubscribe}
-            className="bg-white text-primary py-2 px-4 rounded-md hover:bg-gray-100 transition-colors"
+            className="bg-white text-black py-2 px-4 rounded-md hover:bg-orange-400 transition-colors"
             aria-label="Subscribe to newsletter"
           >
             {isSubscribed ? "Subscribed!" : "Subscribe Now"}
@@ -162,7 +162,7 @@ const Footer: React.FC<FooterProps> = () => {
 
         <div className="flex gap-4">
           {[
-            { icon: FaFacebookF, url: "https://facebook.com" },
+            { icon: FaFacebookF, url: "https://facebook.com"},
             { icon: FaTwitter, url: "https://twitter.com" },
             { icon: FaInstagram, url: "https://instagram.com" },
             { icon: FaYoutube, url: "https://youtube.com" },
@@ -175,7 +175,7 @@ const Footer: React.FC<FooterProps> = () => {
               rel="noopener noreferrer"
               aria-label={`Follow us on ${social.icon.name.replace("Fa", "")}`}
             >
-              <div className="bg-white w-9 h-9 flex justify-center items-center rounded-full hover:bg-gray-100 transition-colors">
+              <div className="bg-white w-9 h-9 flex justify-center items-center rounded-full hover:bg-orange-500 transition-colors">
                 <span className="text-[#4F4F4F] text-xl">
                   <social.icon />
                 </span>
