@@ -31,7 +31,6 @@ export default function Products() {
   return (
     <>
       <div>
-        <Header />
       </div>
       <div className="min-h-screen bg-gray-50">
         <main className="container mx-auto flex gap-8">
