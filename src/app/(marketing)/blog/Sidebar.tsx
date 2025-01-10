@@ -42,7 +42,7 @@ const BlogSidebar = ({ searchQuery, onSearch }: BlogSidebarProps) => {
       <div className="text-center mb-8">
         <div className="mb-4">
           <Image
-            src="/profile Pic.jpg"
+            src="/Profile-Pic.jpg"
             alt="Profile"
             width={96}
             height={96}
