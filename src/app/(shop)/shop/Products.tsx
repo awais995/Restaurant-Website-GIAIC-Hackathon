@@ -42,7 +42,6 @@ export default function Products() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
       <main className="container mx-auto flex gap-8">
         <div className="flex-1">
           {/* Render products */}
