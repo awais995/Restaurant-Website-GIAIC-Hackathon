@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -36,8 +37,8 @@ export default function Hero() {
                 Mollitia facere voluptatum tempore massa conque.
               </p>
             </div>
-            <button className="bg-primary sm:px-3 w-[120px] h-[40px] md:w-[160px] md:h-[40px] md:px-7 sm:text-sm py-2 text-gray-900 rounded-full">
-              See Menu
+            <button className="bg-primary hover:bg-orange-500 hover:text-white sm:px-3 w-[120px] h-[40px] md:w-[110px] md:h-[40px] md:px-4 sm:text-md py-2 text-gray-900 rounded-full">
+             <Link href="/menu"> See Menu </Link>
             </button>
           </div>
 

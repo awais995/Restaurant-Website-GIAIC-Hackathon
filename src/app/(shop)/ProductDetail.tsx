@@ -13,7 +13,7 @@ type Product = {
   name: string;
   image: string;
   description: string;
-  price: number;
+  price: number; // Ensure price is a number
   stock: number;
   imagesList: string[];
   quantity: number; // Add this property
@@ -31,8 +31,12 @@ const ProductDetailPage: React.FC = () => {
     if (slug) {
       const foundProduct: any = products.find((prod) => prod.id.toString() === slug);
       if (foundProduct) {
-        setProduct({ ...foundProduct, quantity: 1 }); // Initialize quantity
-        setCurrentImage(foundProduct.imagesList[0]);
+        // Ensure price is a number
+        const price = typeof foundProduct.price === "string" ? parseFloat(foundProduct.price) : foundProduct.price;
+        // Ensure imagesList is defined and has at least one image
+        const imagesList = foundProduct.imagesList ||  [foundProduct.image];
+        setProduct({ ...foundProduct, price, quantity: 1, imagesList }); // Initialize quantity and imagesList
+        setCurrentImage(imagesList[0]); // Set the first image as the current image
       }
     }
   }, [slug]);
@@ -45,8 +49,7 @@ const ProductDetailPage: React.FC = () => {
   // Handle product change
   const handleProductChange = (newProduct: Product) => {
     setProduct({ ...newProduct, quantity: newProduct.quantity ?? 1 }); // Ensure quantity is included
-};
-
+  };
 
   // If the product is not found, show a loading message
   if (!product) return <div>Loading...</div>;
@@ -69,7 +72,7 @@ const ProductDetailPage: React.FC = () => {
         <div className="w-full md:w-1/2 flex flex-col md:flex-row">
           {/* Thumbnail Gallery */}
           <div className="flex flex-row md:flex-col gap-2 md:mr-4">
-            {product.imagesList.slice(0, 4).map((src, index) => (
+            {(product.imagesList || []).slice(0, 4).map((src, index) => (
               <div
                 key={index}
                 className="aspect-w-1 aspect-h-1 w-20 h-20 md:w-full md:h-24 rounded-lg overflow-hidden cursor-pointer hover:opacity-75"
@@ -122,7 +125,9 @@ const ProductDetailPage: React.FC = () => {
           </p>
 
           {/* Price */}
-          <div className="text-3xl font-bold mt-6">${product.price.toFixed(2)}</div>
+          <div className="text-3xl font-bold mt-6">
+            ${typeof product.price === "number" ? product.price.toFixed(2) : "N/A"}
+          </div>
 
           {/* Rating */}
           <div className="flex items-center mt-4">
@@ -207,8 +212,6 @@ const ProductDetailPage: React.FC = () => {
       </section>
 
       <SimilarProducts onProductChange={(product) => handleProductChange({ ...product, quantity: 1 })} />
-
-
     </div>
   );
 };
