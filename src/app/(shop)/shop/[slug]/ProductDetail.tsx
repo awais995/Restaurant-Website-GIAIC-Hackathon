@@ -2,10 +2,10 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaTwitter } from "react-icons/fa";
-import products from "./products.json";
-import { SimilarProducts } from "./shop/[slug]/PDSections";
+import products from "../../products.json";
+import { SimilarProducts } from "../[slug]/PDSections"
 import { useParams, useRouter } from "next/navigation";
-import { useCart } from "./shop/context/CartContext"; // Import useCart
+import { useCart } from "../context/CartContext"; // Import useCart
 
 // Define Product type with quantity
 type Product = {
